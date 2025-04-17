@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Gratuity Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f2f2f2;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Employee Gratuity Calculator</h1>
+
+    <form method="POST">
+        <label>Last Drawn Salary (Basic + DA) (₹):</label>
+        <input type="number" name="salary" step="0.01" required>
+
+        <label>Joining Date:</label>
+        <input type="date" name="joining_date" required>
+
+        <label>Leaving Date / Current Date:</label>
+        <input type="date" name="leaving_date" required>
+
+        <label>Gratuity Limit:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="limit_option" value="limited" checked> Limited (₹20,00,000)</label>
+            <label><input type="radio" name="limit_option" value="unlimited"> No Limit</label>
+        </div>
+
+        <button type="submit">Calculate Gratuity</button>
+    </form>
+
+    {% if gratuity is not none %}
+        <h2>Gratuity Amount:</h2>
+        <p><strong>₹{{ "{:,.2f}".format(gratuity) }}</strong></p>
+    {% endif %}
+</div>
+
+</body>
+</html>
